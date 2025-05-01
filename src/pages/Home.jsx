@@ -42,7 +42,7 @@ const Home = () => {
   return (
     // Main container for the Home page
     <div className="page-content">
-      <h1>Welcome to the Library Management System</h1>
+      <h1>Kütüphane Yönetim Sistemine Hoşgeldiniz...</h1>
       <ul className="list-container">
         <li>Authors: {dataCounts.authors}</li>
         <li>Books: {dataCounts.books}</li>
