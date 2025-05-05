@@ -85,7 +85,7 @@ const BookList = () => {
               <tr key={book.id}>
                 <td data-label="ID">{book.id}</td>
                 <td data-label="Kitap Adı">
-                  <Link to={`/books/detail/${book.id}`} className="book-link">
+                  <Link to={`/books/detail/${book.id}`} className="name-link">
                     {book.name}
                   </Link>
                 </td>
@@ -107,7 +107,7 @@ const BookList = () => {
                     </svg>
                   </Link>
                   <button onClick={() => handleDelete(book.id)} className="action-btn delete">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <svg viewBox="0 0 24 24"  fill="currentColor">
                       <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                     </svg>
                   </button>

@@ -90,10 +90,15 @@ const AuthorForm = () => {
         </div>
 
         <div className="form-actions">
-          <button type="button" onClick={() => navigate('/authors')}>
+          <button 
+            type="button" 
+            onClick={() => navigate('/authors')}
+            className="cancel-btn">
             İptal
           </button>
-          <button type="submit" className="primary">
+          <button 
+          type="submit"  
+          className="submit-btn">
             {isEditMode ? 'Güncelle' : 'Kaydet'}
           </button>
         </div>

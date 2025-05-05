@@ -30,38 +30,43 @@ const BookDetail = () => {
   if (!book) return <div className="not-found">Kitap bulunamadı</div>;
 
   return (
-    <div className="book-detail-container">
-      <div className="header">
+    <div className="detail-wrapper">
+      <div className="detail-header">
         <h1>{book.name}</h1>
-        <div className="actions">
-          <button onClick={() => navigate(`/books/edit/${id}`)}>Düzenle</button>
-          <button onClick={() => navigate('/books')}>Listeye Dön</button>
+        <div className="detail-buttons">
+          <button 
+          onClick={() => navigate(`/books/edit/${id}`)}
+          className='submit-btn'
+          >Düzenle</button>
+          <button 
+          onClick={() => navigate('/books')}
+          className='cancel-btn'>Listeye Dön</button>
         </div>
       </div>
 
-      <div className="details-grid">
-        <div className="detail-section">
+      <div className="detail-content-grid">
+        <div className="detail-card">
           <h2>Genel Bilgiler</h2>
           <p><strong>ID:</strong> {book.id}</p>
           <p><strong>Yayın Yılı:</strong> {book.publicationYear}</p>
           <p><strong>Stok:</strong> {book.stock}</p>
         </div>
 
-        <div className="detail-section">
+        <div className="detail-card">
           <h2>Yazar Bilgileri</h2>
           <p><strong>Ad:</strong> {book.author?.name || '-'}</p>
           <p><strong>Doğum Tarihi:</strong> {book.author?.birthDate || '-'}</p>
           <p><strong>Ülke:</strong> {book.author?.country || '-'}</p>
         </div>
 
-        <div className="detail-section">
+        <div className="detail-card">
           <h2>Yayınevi Bilgileri</h2>
           <p><strong>Ad:</strong> {book.publisher?.name || '-'}</p>
           <p><strong>Kuruluş Yılı:</strong> {book.publisher?.establishmentYear || '-'}</p>
           <p><strong>Adres:</strong> {book.publisher?.address || '-'}</p>
         </div>
 
-        <div className="detail-section">
+        <div className="detail-card">
           <h2>Kategoriler</h2>
           {book.categories?.length > 0 ? (
             <ul>

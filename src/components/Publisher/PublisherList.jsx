@@ -99,7 +99,7 @@ const PublisherList = () => {
               <tr key={publisher.id}>
                 <td data-label="ID">{publisher.id}</td>
                 <td data-label="Yayınevi Adı">
-                  <Link to={`/publishers/detail/${publisher.id}`} className='publisher-link'>
+                  <Link to={`/publishers/detail/${publisher.id}`} className='name-link'>
                   {publisher.name}
                   </Link>
                 </td>

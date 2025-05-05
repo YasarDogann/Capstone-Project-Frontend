@@ -25,16 +25,16 @@ h1, h2, h3 {
   padding: 1rem;
 }
 
-button {
+/* button {
   background-color: transparent;
   padding: 0;
   border: none;
   cursor: pointer;
-}
+} */
 
-button:not(.action-btn):hover {
+/* button:not(.action-btn):hover {
   background-color: #45a049;
-}
+} */
 
 .actions {
   display: flex;
@@ -205,17 +205,93 @@ button:not(.action-btn):hover {
   border-color: #4CAF50;
   outline: none;
 }
+/*KATEGORİLER */
+.category-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
 
-button[type="submit"] {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
+.category-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #fff;
+  padding: 6px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.category-checkboxes label:hover {
+  background-color: #fef2f2;
+  border-color: #dc2626;
+}
+
+.category-checkboxes input[type="checkbox"] {
+  accent-color: #dc2626; /* kırmızı uyum için */
+}
+/*KATEGORİLER BİTİŞ*/
+
+/*GÜNCELLEME VE EKLEME => KAYDET BUTONU*/
+.submit-btn {
+  background-color: #e53935; /* sıcak kırmızı */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
   font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background-color: #3e8e41;
+.submit-btn:hover {
+  background-color: #961036; /* koyu kırmızı */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
+
+.submit-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/*GÜNCELLEME VE EKLEME => KAYDET BUTONU BİTİŞ */
+
+
+/*GÜNCELLEME VE EKLEME => İPTAL BUTONU*/
+.cancel-btn {
+  background-color: #eeeeee;
+  color: #333;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border: 2px solid #bdbdbd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #e0e0e0;
+  border-color: #9e9e9e;
+  transform: translateY(-1px);
+}
+
+.cancel-btn:active {
+  transform: scale(0.97);
+  background-color: #d6d6d6;
+}
+/*GÜNCELLEME VE EKLEME => İPTAL BUTONU BİTİŞ*/
 
 /* Hata Mesajları */
 .error {
@@ -298,9 +374,9 @@ button[type="submit"]:hover {
   cursor: pointer;
 }
 
-.table .view-btn:hover {
+/* .table .view-btn:hover {
   background-color: #1976D2;
-}
+} */
 
 .table .edit-btn:hover {
   background-color: #FFA000;
@@ -317,7 +393,7 @@ button[type="submit"]:hover {
 }
 
 /* Detay Satırı */
-.details-row td {
+/* .details-row td {
   background-color: #e8f5e9;
   padding: 1rem;
   border-top: 1px solid #ddd;
@@ -330,7 +406,8 @@ button[type="submit"]:hover {
 
 .details p {
   margin: 0.2rem 0;
-}
+} */
+
 
 /* Modern Tablo Stilleri */
 .table-list-container {
@@ -448,13 +525,13 @@ button[type="submit"]:hover {
   background-color: #f9f9f9;
 }
 
-.book-link {
+.name-link {
   color: #1a73e8;
   text-decoration: none;
   font-weight: 500;
 }
 
-.book-link:hover {
+.name-link:hover {
   text-decoration: underline;
 }
 
@@ -523,6 +600,64 @@ button[type="submit"]:hover {
   width: 16px !important;
   height: 16px !important;
   fill: currentColor !important;
+}
+
+.detail-wrapper {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  margin: auto;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.detail-header h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.detail-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.detail-card {
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+}
+
+.detail-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.detail-card p, .detail-card li {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.detail-card ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.detail-loading,
+.detail-not-found {
+  text-align: center;
+  font-size: 18px;
+  color: #777;
+  padding: 30px;
 }
 
 /* Responsive Tasarım */

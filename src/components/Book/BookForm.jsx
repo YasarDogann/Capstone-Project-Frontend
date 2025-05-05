@@ -156,8 +156,13 @@ const BookForm = () => {
         </div>
 
         <div className="form-actions">
-          <button type="button" onClick={() => navigate('/books')}>İptal</button>
-          <button type="submit">{isEditMode ? 'Güncelle' : 'Kaydet'}</button>
+          <button 
+            type="button" 
+            onClick={() => navigate('/books')}
+            className="cancel-btn">İptal</button>
+          <button 
+            type="submit"
+            className="submit-btn">{isEditMode ? 'Güncelle' : 'Kaydet'}</button>
         </div>
       </form>
     </div>

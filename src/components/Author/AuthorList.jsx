@@ -105,12 +105,6 @@ const AuthorList = () => {
         </table>
       </div>
     </div>
-
-
-
-
-
-
   //   <div className="author-list-container">
   //     <div className="header">
   //       <h1>Yazar Listesi</h1>

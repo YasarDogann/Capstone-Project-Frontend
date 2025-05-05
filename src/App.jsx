@@ -6,6 +6,7 @@ import AuthorList from './components/Author/AuthorList';
 import AuthorForm from './components/Author/AuthorForm';
 import CategoryForm from './components/Category/CategoryForm';
 import CategoryList from './components/Category/CategoryList';
+import CategoryDetail from './components/Category/CategoryDetail';
 import PublisherForm from './components/Publisher/PublisherForm';
 import PublisherList from './components/Publisher/PublisherList';
 import PublisherDetail from './components/Publisher/PublisherDetail';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/categories" element={<CategoryList />} />
           <Route path="/categories/new" element={<CategoryForm />} />
           <Route path="/categories/edit/:id" element={<CategoryForm />} />
+          <Route path='/categories/detail/:id' element={<CategoryDetail />} />
 
           <Route path="/publishers" element={<PublisherList />} />
           <Route path="/publishers/new" element={<PublisherForm />} />

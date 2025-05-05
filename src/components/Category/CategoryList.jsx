@@ -49,6 +49,11 @@ const CategoryList = () => {
     fetchCategories();
   }, []);
 
+  // Arama filtresi
+  const filteredCategories = categories.filter((category) =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (loading) return <div>Yükleniyor...</div>;
 
   return (
@@ -83,10 +88,15 @@ const CategoryList = () => {
             </tr>
           </thead>
           <tbody>
-            {categories.map(category => (
+            {filteredCategories.map(category => (
               <tr key={category.id}>
                 <td>{category.id}</td>
-                <td>{category.name}</td>
+                <td data-label="Kategori Adı">
+                  <Link to={`/categories/detail/${category.id}`} 
+                    className="name-link">
+                      {category.name}
+                  </Link>
+                </td>
                 <td>{category.description || '-'}</td>
                 <td data-label="İşlemler" className="actions">
                   <Link to={`/categories/edit/${category.id}`} className="action-btn edit">
