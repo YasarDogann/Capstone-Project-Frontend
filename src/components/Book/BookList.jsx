@@ -45,7 +45,7 @@ const BookList = () => {
 
 
   return (
-    <div className="book-list-container">
+    <div className="table-list-container">
       <div className="header">
         <h1>Kitap Listesi</h1>
         <div className="header-actions">

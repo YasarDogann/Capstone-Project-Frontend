@@ -7,12 +7,12 @@ const Navbar = () => {
     // Navigation bar container
     <nav className="navbar">
       <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/publishers">Publishers</Link></li>
-        <li><Link to="/categories">Categories</Link></li>
-        <li><Link to="/books">Books</Link></li>
-        <li><Link to="/authors">Authors</Link></li>
-        <li><Link to="/borrowings">Borrowings</Link></li>
+        <li><Link to="/">Anasayfa</Link></li>
+        <li><Link to="/publishers">Yayınevi</Link></li>
+        <li><Link to="/categories">Kategori</Link></li>
+        <li><Link to="/books">Kitaplar</Link></li>
+        <li><Link to="/authors">Yazarlar</Link></li>
+        <li><Link to="/borrowings">Ödünç Verilen Kitap</Link></li>
       </ul>
     </nav>
   );

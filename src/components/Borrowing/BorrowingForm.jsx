@@ -8,6 +8,7 @@ const BorrowingForm = () => {
     borrowerName: '',
     borrowerMail: '',
     borrowingDate: new Date().toISOString().split('T')[0],
+    returnDate: '',
     bookForBorrowingRequest: { id: 0 }
   });
 
@@ -29,6 +30,7 @@ const BorrowingForm = () => {
             borrowerName: data.borrowerName,
             borrowerMail: data.borrowerMail,
             borrowingDate: data.borrowingDate,
+            returnDate: data.returnDate || '',
             bookForBorrowingRequest: {
               id: data.book.id,
               name: data.book.name,
@@ -125,6 +127,17 @@ const BorrowingForm = () => {
               />
             </div>
 
+            {/* <div className="form-group">
+              <label>İade Tarihi*</label>
+              <input
+                type="date"
+                name="returnDate"
+                value={formData.returnDate || ''}
+                onChange={handleChange}
+                required
+              />
+            </div> */}
+
             <div className="form-group">
               <label>Kitap*</label>
               <select
@@ -142,9 +155,7 @@ const BorrowingForm = () => {
             </div>
           </>
         )}
-
-        {isEditMode && (
-          <div className="form-group">
+        <div className="form-group">
             <label>İade Tarihi*</label>
             <input
               type="date"
@@ -153,8 +164,7 @@ const BorrowingForm = () => {
               onChange={handleChange}
               required
             />
-          </div>
-        )}
+        </div>
 
         <div className="form-actions">
           <button type="button" onClick={() => navigate('/borrowings')}>İptal</button>

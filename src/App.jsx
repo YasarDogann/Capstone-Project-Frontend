@@ -16,6 +16,7 @@ import BorrowingForm from './components/Borrowing/BorrowingForm';
 import BorrowingList from './components/Borrowing/BorrowingList';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FooterImage from './components/FooterImage';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
       </div>  
+      <FooterImage />
     </Router>
   );
 }

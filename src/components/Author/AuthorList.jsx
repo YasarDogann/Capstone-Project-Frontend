@@ -43,7 +43,7 @@ const AuthorList = () => {
   if (isLoading) return <div className="loading">Yükleniyor...</div>;
 
   return (
-    <div className="author-list-container">
+    <div className="table-list-container">
       <div className="header">
         <h1>Yazar Listesi</h1>
         <div className="header-actions">
