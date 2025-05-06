@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import AuthorList from './components/Author/AuthorList';
 import AuthorForm from './components/Author/AuthorForm';
+import AuthorDetail from './components/Author/AuthorDetail';
 import CategoryForm from './components/Category/CategoryForm';
 import CategoryList from './components/Category/CategoryList';
 import CategoryDetail from './components/Category/CategoryDetail';
@@ -15,6 +16,7 @@ import BookList from './components/Book/BookList';
 import BookForm from './components/Book/BookForm';
 import BorrowingForm from './components/Borrowing/BorrowingForm';
 import BorrowingList from './components/Borrowing/BorrowingList';
+import BorrowingDetail from './components/Borrowing/BorrowingDetail';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FooterImage from './components/FooterImage';
@@ -29,6 +31,7 @@ function App() {
           <Route path="/authors" element={<AuthorList />} />
           <Route path="/authors/new" element={<AuthorForm />} />
           <Route path="/authors/edit/:id" element={<AuthorForm />} />
+          <Route path="/authors/detail/:id" element={<AuthorDetail />} />
 
           <Route path="/categories" element={<CategoryList />} />
           <Route path="/categories/new" element={<CategoryForm />} />
@@ -48,6 +51,7 @@ function App() {
           <Route path="/borrowings" element={<BorrowingList />} />
           <Route path="/borrowings/new" element={<BorrowingForm />} />
           <Route path="/borrowings/edit/:id" element={<BorrowingForm />} />
+          <Route path="/borrowings/detail/:id" element={<BorrowingDetail />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
       </div>  

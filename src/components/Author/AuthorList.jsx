@@ -81,7 +81,7 @@ const AuthorList = () => {
                 <td data-label="ID">{author.id}</td>
                 <td data-label="Yazar Adı">
                   <Link to={`/authors/detail/${author.id}`}
-                  className="author-link">
+                  className="name-link">
                     {author.name}
                   </Link>
                 </td>

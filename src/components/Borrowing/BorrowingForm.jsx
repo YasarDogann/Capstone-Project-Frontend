@@ -167,8 +167,13 @@ const BorrowingForm = () => {
         </div>
 
         <div className="form-actions">
-          <button type="button" onClick={() => navigate('/borrowings')}>İptal</button>
-          <button type="submit">{isEditMode ? 'Güncelle' : 'Kaydet'}</button>
+          <button 
+            type="button" 
+            onClick={() => navigate('/borrowings')}
+            className='cancel-btn'>İptal</button>
+          <button 
+            type="submit"
+            className='submit-btn'>{isEditMode ? 'Güncelle' : 'Kaydet'}</button>
         </div>
       </form>
     </div>

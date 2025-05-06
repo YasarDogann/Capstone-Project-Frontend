@@ -52,7 +52,7 @@ const BorrowingList = () => {
           <div className="search-container">
             <input
               type="text"
-              placeholder="Ödünç alan veya kitap adı ara..."
+              placeholder="Ödünç alan adı ara..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -81,14 +81,29 @@ const BorrowingList = () => {
             {filteredBorrowings.map(borrowing => (
               <tr key={borrowing.id}>
                 <td data-label="ID">{borrowing.id}</td>
-                <td>{borrowing.borrowerName}</td>
+                <td data-label="Ödünç Alan">
+                  <Link to={`/borrowings/detail/${borrowing.id}`}
+                  className='name-link'>
+                    {borrowing.borrowerName}
+                  </Link>
+                </td>
+                
                 <td>{borrowing.borrowerMail}</td>
                 <td>{borrowing.book.name}</td>
                 <td>{borrowing.book.author.name}</td>
                 <td>{new Date(borrowing.borrowingDate).toLocaleDateString()}</td>
-                <td>{borrowing.returnDate ? new Date(borrowing.returnDate).toLocaleDateString() : 'İade edilmedi'}</td>
+                {/* <td>{borrowing.returnDate ? new Date(borrowing.returnDate).toLocaleDateString() : 'İade edilmedi'}</td> */}
+                <td>
+                  {borrowing.returnDate && !isNaN(new Date(borrowing.returnDate)) ? (
+                    <span className="badge badge-success">
+                      {new Date(borrowing.returnDate).toLocaleDateString()}
+                    </span>
+                  ) : (
+                    <span className="badge badge-warning">İade edilmedi</span>
+                  )}
+                </td>
                 <td data-label="İşlemler" className="actions">
-                  <Link to={`/borrowing/edit/${borrowing.id}`} className="action-btn edit">
+                  <Link to={`/borrowings/edit/${borrowing.id}`} className="action-btn edit">
                     <svg viewBox="0 0 24 24">
                       <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                     </svg>
