@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080/api/v1'; // Backend base URL'i
 
+// Deneme Silinecek unutma
 // export const getBooks = () => axios.get(`${API_BASE_URL}/api/v1/books`);
 // export const addBook = (book) => axios.post(`${API_BASE_URL}/books`, book);
 // export const updateBook = (id, book) => axios.put(`${API_BASE_URL}/books/${id}`, book);
