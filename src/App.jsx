@@ -27,27 +27,34 @@ function App() {
       <Navbar />
       <div className="page-content">
         <Routes>
+          {/* Ana sayfa */}
           <Route path="/" element={<Home />} />
+
+          {/* Yazarlar sayfası */}
           <Route path="/authors" element={<AuthorList />} />
           <Route path="/authors/new" element={<AuthorForm />} />
           <Route path="/authors/edit/:id" element={<AuthorForm />} />
           <Route path="/authors/detail/:id" element={<AuthorDetail />} />
 
+          {/* Kategoriler sayfası */}
           <Route path="/categories" element={<CategoryList />} />
           <Route path="/categories/new" element={<CategoryForm />} />
           <Route path="/categories/edit/:id" element={<CategoryForm />} />
           <Route path='/categories/detail/:id' element={<CategoryDetail />} />
 
+          {/* Yayınevleri sayfası */}
           <Route path="/publishers" element={<PublisherList />} />
           <Route path="/publishers/new" element={<PublisherForm />} />
           <Route path="/publishers/edit/:id" element={<PublisherForm />} />
           <Route path="/publishers/detail/:id" element={<PublisherDetail />} />
 
+          {/* Kitaplar sayfası */}
           <Route path="/books" element={<BookList />} />
           <Route path="/books/new" element={<BookForm />} />
           <Route path="/books/edit/:id" element={<BookForm />} />
           <Route path="/books/detail/:id" element={<BookDetail />} />
 
+          {/* Ödünçler sayfası */}
           <Route path="/borrowings" element={<BorrowingList />} />
           <Route path="/borrowings/new" element={<BorrowingForm />} />
           <Route path="/borrowings/edit/:id" element={<BorrowingForm />} />

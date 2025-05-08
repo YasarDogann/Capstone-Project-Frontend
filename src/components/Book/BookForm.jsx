@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
+// Kitap formu için başlangıç verileri tanımlanıyor
 const BookForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -13,26 +14,31 @@ const BookForm = () => {
     categories: []
   });
 
+  // Yazarlar, yayınevleri ve kategoriler için state'ler
   const [authors, setAuthors] = useState([]);
   const [publishers, setPublishers] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
-  const { id } = useParams();
+  const { id } = useParams(); // URL'den kitap ID'si alınır
   const navigate = useNavigate();
-  const isEditMode = !!id;
+  const isEditMode = !!id; // Düzenleme modu mu kontrol et
 
+  // Sayfa yüklendiğinde gerekli veriler çekilir
   useEffect(() => {
     const fetchData = async () => {
       try {
+         // Yazarlar, yayınevleri ve kategoriler paralel olarak getirilir
         const [authorsRes, publishersRes, categoriesRes] = await Promise.all([
           api.get('/authors'),
           api.get('/publishers'),
           api.get('/categories')
         ]);
 
+        // Çekilen veriler state'e aktarılır
         setAuthors(authorsRes.data);
         setPublishers(publishersRes.data);
         setAllCategories(categoriesRes.data);
 
+        // Eğer düzenleme modundaysa kitap verileri de çekilir
         if (isEditMode) {
           const { data } = await api.get(`/books/${id}?_expand=author,publisher&_embed=categories`);
           setFormData({
@@ -48,9 +54,11 @@ const BookForm = () => {
     fetchData();
   }, [id, isEditMode]);
 
+  // Form gönderildiğinde çalışan fonksiyon
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Sunucuya gönderilecek veri hazırlanır
       const payload = {
         ...formData,
         authorId: formData.author.id,
@@ -58,6 +66,7 @@ const BookForm = () => {
         categoryIds: formData.categories.map(c => c.id)
       };
 
+      // Yeni kitap ekleme ya da var olanı güncelleme
       if (isEditMode) {
         await api.put(`/books/${id}`, payload);
         toast.success('Kitap güncellendi!');
@@ -65,27 +74,31 @@ const BookForm = () => {
         await api.post('/books', payload);
         toast.success('Kitap eklendi!');
       }
-      navigate('/books');
+      navigate('/books'); // Başarılı işlemden sonra kitaplar sayfasına yönlendirilir
     } catch (error) {
       toast.error(error.response?.data?.message || 'İşlem başarısız');
       console.error(error);
     }
   };
 
+  // Form alanı değişikliklerini yönetir
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+   // Yazar seçimi değiştiğinde çağrılır
   const handleAuthorChange = (e) => {
     const author = authors.find(a => a.id === Number(e.target.value)) || { id: 0 };
     setFormData({ ...formData, author });
   };
 
+  // Yayınevi seçimi değiştiğinde çağrılır
   const handlePublisherChange = (e) => {
     const publisher = publishers.find(p => p.id === Number(e.target.value)) || { id: 0 };
     setFormData({ ...formData, publisher });
   };
 
+  // Kategori seçimi değiştirildiğinde çalışır
   const handleCategoryToggle = (categoryId) => {
     setFormData(prev => {
       const exists = prev.categories.some(c => c.id === categoryId);

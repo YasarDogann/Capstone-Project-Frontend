@@ -5,41 +5,46 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const AuthorList = () => {
-  const [authors, setAuthors] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [authors, setAuthors] = useState([]);   // Yazarları tutan state
+  const [isLoading, setIsLoading] = useState(true);   // Yükleme durumu state'i
+  const [searchTerm, setSearchTerm] = useState('');   // Arama terimi state'i
 
+  // Yazarları API'den çeken fonksiyon
   const fetchAuthors = async () => {
     try {
-      const res = await api.get('/authors');
+      const res = await api.get('/authors'); // API'den yazar listesini al
       setAuthors(res.data);
     } catch (error) {
-      toast.error('Yazarlar yüklenemedi: ' + error.message);
+      toast.error('Yazarlar yüklenemedi: ' + error.message); // Hata durumunda kullanıcıyı bilgilendir
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Yazar silme fonksiyonu
   const handleDelete = async (id) => {
-    if (window.confirm('Bu yazarı silmek istediğinize emin misiniz?')) {
+    if (window.confirm('Bu yazarı silmek istediğinize emin misiniz?')) { // Silme işlemi için onay al
       try {
-        await api.delete(`/authors/${id}`);
-        toast.success('Yazar silindi');
-        fetchAuthors();
+        await api.delete(`/authors/${id}`); // API'ye silme isteği gönder
+        toast.success('Yazar silindi'); // Başarı mesajı göster
+        fetchAuthors(); // Listeyi yenile
       } catch (error) {
-        toast.error('Silme hatası: ' + error.response?.data?.message);
+        toast.error('Silme hatası: ' + error.response?.data?.message); // Hata mesajını göster 
       }
     }
   };
-
+  
+  // Bileşen mount olduğunda yazarları yükle
   useEffect(() => {
     fetchAuthors();
-  }, []);
+  }, []); // Boş dependency array sadece ilk render'da çalışmasını sağlar
 
+  // Arama terimine göre filtreleme yap
   const filteredAuthors = authors.filter(author =>
     author.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Yükleme durumunda loading mesajı göster
   if (isLoading) return <div className="loading">Yükleniyor...</div>;
 
   return (

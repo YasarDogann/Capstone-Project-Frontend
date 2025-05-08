@@ -4,12 +4,14 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const AuthorDetail = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [author, setAuthor] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams(); // URL'den id parametresini al
+  const navigate = useNavigate();  // Sayfa yönlendirme için navigate fonksiyonu
+  const [author, setAuthor] = useState(null); // Yazar bilgilerini tutacak state
+  const [loading, setLoading] = useState(true); // Yükleme durumu için state
 
+  // Bileşen mount olduğunda veya id değiştiğinde çalışacak efekt
   useEffect(() => {
+    // Yazar bilgilerini API'den çeken fonksiyon
         const fetchCategory = async () => {
             try {
                 const { data } = await api.get(`/authors/${id}`);
@@ -23,11 +25,12 @@ const AuthorDetail = () => {
             }
         };
         fetchCategory();
-    }, [id, navigate]);
+    }, [id, navigate]); // id veya navigate değişirse efekt yeniden çalışsın
 
-    if (loading) return <div className="loading">Yükleniyor...</div>;
-    if (!author) return <div className="not-found">Yazar Bulunamadı</div>;
+    if (loading) return <div className="loading">Yükleniyor...</div>;  // Veri yükleniyorsa yükleme mesajını göster
+    if (!author) return <div className="not-found">Yazar Bulunamadı</div>; // Yazar bilgisi yoksa bulunamadı mesajını göster
 
+    // Ana render kısmı
     return (
         <div className="detail-wrapper">
             <div className="detail-header">

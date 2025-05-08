@@ -4,43 +4,49 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const BookList = () => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [books, setBooks] = useState([]); // Kitapları saklamak için state
+  const [loading, setLoading] = useState(true); // Yüklenme durumunu takip eden state
+  const [searchTerm, setSearchTerm] = useState(''); // Arama çubuğu için girilen terimi saklayan state
 
+   // API'den kitap verilerini getiren fonksiyo
   const fetchBooks = async () => {
     try {
+      // Yazar ve yayınevi bilgilerini genişleterek kitapları çekiyoruz
       const { data } = await api.get('/books?_expand=author&_expand=publisher&_embed=categories');
-      setBooks(data);
+      setBooks(data); // Kitapları state'e kaydet
     } catch (error) {
-      toast.error('Kitaplar yüklenemedi');
+      toast.error('Kitaplar yüklenemedi'); // Hata oluşursa kullanıcıya bildirim göster
       console.error(error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Yükleme tamamlandı
     }
   };
 
+  // Sayfa yüklendiğinde kitapları getir
   useEffect(() => {
     fetchBooks();
   }, []);
 
+  // Kitabı silmek için fonksiyon
   const handleDelete = async (id) => {
     if (window.confirm('Bu kitabı silmek istediğinize emin misiniz?')) {
       try {
-        await api.delete(`/books/${id}`);
-        toast.success('Kitap silindi!');
-        fetchBooks();
+        await api.delete(`/books/${id}`); // API üzerinden sil
+        toast.success('Kitap silindi!'); // Başarı bildirimi
+        fetchBooks(); // Listeyi güncelle
       } catch (error) {
         toast.error(error.response?.data?.message || 'Silme işlemi başarısız');
       }
     }
   };
 
+  // Arama terimine göre kitapları filtrele
   const filteredBooks = books.filter(book =>
     book.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     book.author?.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Veriler yükleniyorsa "Yükleniyor" mesajı göster
   if (loading) return <div className="loading">Yükleniyor...</div>;
 
 

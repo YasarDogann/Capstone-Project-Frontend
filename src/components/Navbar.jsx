@@ -4,7 +4,7 @@ import '../index.css';
 
 const Navbar = () => {
   return (
-    // Navigation bar container
+    // Navigasyon çubuğu kapsayıcıs
     <nav className="navbar">
       <ul>
         <li><Link to="/">Anasayfa</Link></li>
@@ -18,4 +18,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; // Exporting the Navbar component to be used in other parts of the application
+export default Navbar; // Navbar bileşenini dışa aktarır, böylece diğer dosyalarda kullanılabilir

@@ -4,17 +4,18 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const BorrowingDetail = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const [borrowing, setBorrowing] = useState(null);
+    const { id } = useParams(); // URL'den ödünç alma ID'sini alır
+    const navigate = useNavigate();  // Sayfa yönlendirmeleri için kullanılır
+    const [borrowing, setBorrowing] = useState(null); // API'den gelen ödünç alma bilgilerini tutar
     const [loading, setLoading] = useState(true);
 
+    // Sayfa yüklendiğinde ödünç alma detaylarını çeker
     useEffect(() => {
         const fetchBook = async () => {
             try {
-                const { data } = await api.get(`/borrows/${id}`);
-                setBorrowing(data);
-            } catch (err) {
+                const { data } = await api.get(`/borrows/${id}`); // API'den ilgili ID'ye sahip ödünç alma kaydını alır
+                setBorrowing(data);  // Gelen veriyi state'e aktarır
+            } catch (err) { 
                 toast.error('Ödünç alan bilgileri yüklenemedi');
                 console.error('Detay sayfası hatası:', err);
                 navigate('/borrowings');
@@ -25,9 +26,10 @@ const BorrowingDetail = () => {
         fetchBook();
     }, [id, navigate]);
 
-    if (loading) return <div className="loading">Yükleniyor...</div>;
-    if (!borrowing) return <div className="not-found">Ödünç Alan Bulunamadı</div>;
+    if (loading) return <div className="loading">Yükleniyor...</div>;  // Yükleniyorsa kullanıcıya bilgi verir
+    if (!borrowing) return <div className="not-found">Ödünç Alan Bulunamadı</div>; // borrowing boşsa kullanıcıya veri bulunamadığını gösterir
 
+    // Veriler yüklendikten sonra detayları gösterir
     return (
         <div className="detail-wrapper">
             <div className="detail-header">

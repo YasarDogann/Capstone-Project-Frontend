@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../services/api';
 
-// Home component to display an overview of the Library Management System
+// Kütüphane Yönetim Sistemi'ne genel bakış sağlayan Home bileşeni
 const Home = () => {
-   // State to store counts of various entities in the system
+  // Sistem içindeki çeşitli varlıkların sayısını tutmak için state (durum) tanımı
   const [dataCounts, setDataCounts] = useState({
-    authors: 0,
-    books: 0,
-    publishers: 0,
-    categories: 0,
-    borrowings: 0,
+    authors: 0,     // Yazar sayısı
+    books: 0,       // Kitap sayısı
+    publishers: 0,  // Yayınevi sayısı
+    categories: 0,  // Kategori sayısı
+    borrowings: 0,  // Ödünç alınan kitap sayısı
   });
-// useEffect to fetch data when the component mounts
+
+  // Bileşen yüklendiğinde API'den verileri çekmek için useEffect kullanılı
   useEffect(() => {
-    // Function to fetch counts of various entities from the API
+    // API'den varlıkların sayısını çekmek için tanımlanan asenkron fonksiyon
     const fetchCounts = async () => {
       try {
+        // Aynı anda birden fazla veri isteği gönderilir
         const [authors, books, publishers, categories, borrowings] = await Promise.all([
           api.get('/authors'),
           api.get('/books'),
@@ -24,6 +26,7 @@ const Home = () => {
           api.get('/borrows'),
         ]);
 
+        // Gelen verilerin uzunluklarıyla state güncellenir
         setDataCounts({
           authors: authors.data.length,
           books: books.data.length,
@@ -32,15 +35,15 @@ const Home = () => {
           borrowings: borrowings.data.length,
         });
       } catch (err) {
-        console.error('Error fetching data counts:', err);
+        console.error('Error fetching data counts:', err); // Veri çekme sırasında hata olursa konsola yazdırılır
       }
     };
 
-    fetchCounts();
+    fetchCounts(); // Fonksiyon çağrılır
   }, []);
 
   return (
-    // Main container for the Home page
+    // Ana sayfa için içerik kapsayıcısı
     <div className="page-content">
       <h1>Kütüphane Yönetim Sistemine Hoşgeldiniz...</h1>
       <ul className="list-container">
@@ -54,4 +57,4 @@ const Home = () => {
   );
 };
 
-export default Home; // Exporting the Home component for use in other parts of the application
+export default Home; // Home bileşeni dışa aktarılır, böylece diğer dosyalarda kullanılabilir

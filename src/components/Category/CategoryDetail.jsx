@@ -4,17 +4,19 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
 const CatgoryDetail = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const { id } = useParams(); // URL'den gelen kategori ID'sini al
+    const navigate = useNavigate(); // Sayfalar arasında yönlendirme için kullanılır
     const [category, setCategory] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // Bileşen yüklendiğinde kategori bilgilerini getir
     useEffect(() => {
         const fetchCategory = async () => {
             try {
-                const { data } = await api.get(`/categories/${id}`);
-                setCategory(data);
+                const { data } = await api.get(`/categories/${id}`); // API'den kategori bilgilerini çek
+                setCategory(data); // Gelen veriyi state'e kaydet
             } catch (err) {
+                // Hata durumunda uyarı göster ve listeye yönlendir
                 toast.error('Kategori bilgileri yüklenemedi');
                 console.error('Detay sayfası hatası : ', err);
                 navigate('/categories');
@@ -23,7 +25,7 @@ const CatgoryDetail = () => {
             }
         };
         fetchCategory();
-    }, [id, navigate]);
+    }, [id, navigate]); // id veya navigate değişirse tekrar çalışır
 
     if (loading) return <div className="loading">Yükleniyor...</div>;
     if (!category) return <div className="not-found">Kategori Bulunamadı</div>;

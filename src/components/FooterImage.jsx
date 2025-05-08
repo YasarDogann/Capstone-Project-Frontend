@@ -1,10 +1,9 @@
 import React from 'react';
-import footerImage from '../assets/pode-osi.png'; // Görseli import et
+import footerImage from '../assets/pode-osi.png'; // Görseli import ettim
 
 const FooterImage = () => {
   return (
     <div>
-      {/* Sağ alt */}
       <div style={{
         position: 'fixed',
         bottom: '10px',

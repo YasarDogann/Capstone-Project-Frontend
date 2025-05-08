@@ -4,28 +4,32 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const BorrowingForm = () => {
+  // Form verilerini tutan state
   const [formData, setFormData] = useState({
     borrowerName: '',
     borrowerMail: '',
-    borrowingDate: new Date().toISOString().split('T')[0],
+    borrowingDate: new Date().toISOString().split('T')[0], // Varsayılan olarak bugünün tarihi
     returnDate: '',
-    bookForBorrowingRequest: { id: 0 }
+    bookForBorrowingRequest: { id: 0 }  // Kitap ID'si
   });
 
-  const [books, setBooks] = useState([]);
-  const { id } = useParams();
+  const [books, setBooks] = useState([]); // Kitap listesini tuta
+  const { id } = useParams(); // URL'den ödünç kaydının ID'sini alır
   const navigate = useNavigate();
-  const isEditMode = !!id;
+  const isEditMode = !!id; // Güncelleme mi yoksa yeni kayıt mı olduğunu belirler
 
+   // Bileşen yüklendiğinde kitapları ve (varsa) mevcut ödünç verisini getir
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const booksRes = await api.get('/books');
+        const booksRes = await api.get('/books'); // Kitap listesini API'den al
         setBooks(booksRes.data);
 
+        // Düzenleme modundaysa mevcut ödünç kaydını getir
         if (isEditMode) {
           const borrowingRes = await api.get(`/borrows/${id}`);
           const data = borrowingRes.data;
+          // Gelen verilerle formu doldur
           setFormData({
             borrowerName: data.borrowerName,
             borrowerMail: data.borrowerMail,
@@ -47,9 +51,11 @@ const BorrowingForm = () => {
     fetchData();
   }, [id, isEditMode]);
 
+  // Form gönderildiğinde çalışır
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Güncelleme veya yeni ekleme için payload oluştur
       const payload = isEditMode ? {
         borrowerName: formData.borrowerName,
         borrowingDate: formData.borrowingDate,
@@ -61,6 +67,7 @@ const BorrowingForm = () => {
         }
       };
 
+      // API isteği gönder (PUT veya POST
       if (isEditMode) {
         await api.put(`/borrows/${id}`, payload);
         toast.success('Ödünç kaydı güncellendi!');
@@ -68,18 +75,20 @@ const BorrowingForm = () => {
         await api.post('/borrows', payload);
         toast.success('Ödünç kaydı eklendi!');
       }
-      navigate('/borrowings');
+      navigate('/borrowings'); // Liste sayfasına yönlendir
     } catch (error) {
       toast.error(error.response?.data?.message || 'İşlem başarısız');
       console.error(error);
     }
   };
 
+  // Input değiştiğinde form verisini günceller
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Kitap seçimi değiştiğinde form verisini günceller
   const handleBookChange = (e) => {
     const bookId = Number(e.target.value);
     const selectedBook = books.find(b => b.id === bookId) || { id: 0 };

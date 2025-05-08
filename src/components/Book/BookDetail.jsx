@@ -4,20 +4,24 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const BookDetail = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [book, setBook] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams(); // URL'den id parametresini al
+  const navigate = useNavigate(); // Sayfa yönlendirme için navigate fonksiyonu
+  const [book, setBook] = useState(null); // Kitap detaylarını tutan state
+  const [loading, setLoading] = useState(true); // Yükleme durumu state'i
 
+  // Kitap detaylarını API'den çeken efekt
   useEffect(() => {
     const fetchBook = async () => {
       try {
+        // API'den kitap detaylarını al
+        // _expand ile yazar ve yayınevi bilgilerini,
+        // _embed ile kategori bilgilerini dahil ediyoruz
         const { data } = await api.get(`/books/${id}?_expand=author&_expand=publisher&_embed=categories`);
         setBook(data);
       } catch (err) {
-        toast.error('Kitap bilgileri yüklenemedi');
+        toast.error('Kitap bilgileri yüklenemedi'); // Hata durumunda kullanıcıyı bilgilendir
         console.error('Detay sayfası hatası:', err);
-        navigate('/books');
+        navigate('/books'); // Kitaplar listesine yönlendir
       } finally {
         setLoading(false);
       }
@@ -29,6 +33,7 @@ const BookDetail = () => {
   if (loading) return <div className="loading">Yükleniyor...</div>;
   if (!book) return <div className="not-found">Kitap bulunamadı</div>;
 
+  // Ana render
   return (
     <div className="detail-wrapper">
       <div className="detail-header">

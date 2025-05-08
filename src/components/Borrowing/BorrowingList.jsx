@@ -4,43 +4,48 @@ import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const BorrowingList = () => {
-  const [borrowings, setBorrowings] = useState([]);
+  const [borrowings, setBorrowings] = useState([]); // Ödünç kayıtlarını tutan state
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');  // Arama çubuğu için state
 
+  // API'den ödünç kayıtlarını getiren fonksiyon
   const fetchBorrowings = async () => {
     try {
       const { data } = await api.get('/borrows');
-      setBorrowings(data);
+      setBorrowings(data); // Gelen veriyi state'e kaydet
     } catch (error) {
       toast.error('Ödünç kayıtları yüklenemedi');
       console.error(error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Veri yüklendiğinde loading durumunu kapat
     }
   };
 
+  // Sayfa yüklendiğinde verileri getir
   useEffect(() => {
     fetchBorrowings();
   }, []);
 
+  // Silme işlemini gerçekleştiren fonksiyon
   const handleDelete = async (id) => {
     if (window.confirm('Bu ödünç kaydını silmek istediğinize emin misiniz?')) {
       try {
         await api.delete(`/borrows/${id}`);
         toast.success('Kayıt silindi!');
-        fetchBorrowings();
+        fetchBorrowings();  // Silme işleminden sonra listeyi güncelle
       } catch (error) {
         toast.error(error.response?.data?.message || 'Silme işlemi başarısız');
       }
     }
   };
 
+  // Arama sonucuna göre filtreleme
   const filteredBorrowings = borrowings.filter(borrowing =>
     borrowing.borrowerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     borrowing.book.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Yüklenme ekranı
   if (loading) return <div className="loading">Yükleniyor...</div>;
 
 
