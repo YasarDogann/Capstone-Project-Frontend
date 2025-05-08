@@ -1,4 +1,4 @@
-# Book Management System
+# Capstone Project - Kütüphane Yönetim Sistemi
 
 Bu proje, React Router kullanarak tek sayfalık bir uygulama (SPA) geliştirilmesini amaçlayan bir kitap yönetim sistemi örneğidir. Kullanıcılar, kitaplarla ilgili CRUD işlemleri yapabilirler. Yayımcı, kategori, kitap, yazar ve kitap alma işlemleri üzerinde gerçekleştirebilecekleri işlemler mevcuttur.
 
@@ -46,7 +46,8 @@ Projeyi yerel ortamınızda çalıştırmak için şu adımları izleyin:
     ```
 
 3. **Projeyi başlatın**
-     ```npm start
+     ```
+     npm start
 
 
 ### CRUD İşlemleri
@@ -83,21 +84,21 @@ Her sayfada (Yayımcı, Kategori, Kitap, Yazar, Kitap Alma) aşağıdaki CRUD i�
     - Silme : Bilgileri silme
 
 ## Ekran Görüntüleri
- - Anasayfa :
+ # Anasayfa :
  ![alt text](Anasayfa.png)
 
- - Yayınevi : 
+ # Yayınevi : 
  ![alt text](yayınevi.png)
 
- - Kategori : 
+ # Kategori : 
  ![alt text](Kategori.png)
 
- - Kitap : 
+ # Kitap : 
  ![alt text](Kitap.png)
  ![alt text](kitapekle.png)
 
- - Yazar :
+ # Yazar :
  ![alt text](Yazar.png)
 
- - Ödünç Alınan Kitaplar :
+ # Ödünç Alınan Kitaplar :
  ![alt text](Ödünç.png)
