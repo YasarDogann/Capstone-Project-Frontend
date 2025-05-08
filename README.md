@@ -83,22 +83,27 @@ Her sayfada (Yayımcı, Kategori, Kitap, Yazar, Kitap Alma) aşağıdaki CRUD i�
     - Güncelleme : Ödünç alınan kitabın iade tarihi ve ödünç alan kişi adı güncelleme
     - Silme : Bilgileri silme
 
-## Ekran Görüntüleri
- # Anasayfa :
- ![alt text](Anasayfa.png)
+# Ekran Görüntüleri
+ ## Anasayfa :
+ ![Anasayfa](https://github.com/user-attachments/assets/c7d0c7d4-9313-4893-8e74-202980f3116d)
 
- # Yayınevi : 
- ![alt text](yayınevi.png)
 
- # Kategori : 
- ![alt text](Kategori.png)
+ ## Yayınevi : 
+ ![yayınevi](https://github.com/user-attachments/assets/b220d437-8df6-419b-8522-43f33d95d042)
 
- # Kitap : 
- ![alt text](Kitap.png)
- ![alt text](kitapekle.png)
 
- # Yazar :
- ![alt text](Yazar.png)
+ ## Kategori : 
+ ![Kategori](https://github.com/user-attachments/assets/b5c31930-0563-4658-a42f-e3a98d8ed0c8)
 
- # Ödünç Alınan Kitaplar :
- ![alt text](Ödünç.png)
+
+ ## Kitap : 
+ ![Kitap](https://github.com/user-attachments/assets/9def080d-86df-48dd-9551-b73857ee1239)
+ ![kitapekle](https://github.com/user-attachments/assets/06d45a73-816a-4803-a441-65cd03d7d579)
+
+
+ ## Yazar :
+ ![Yazar](https://github.com/user-attachments/assets/f6378568-7d6d-4ae2-9f4a-8e46c6986e96)
+
+
+ ## Ödünç Alınan Kitaplar :
+ ![Ödünç](https://github.com/user-attachments/assets/7f792118-d11d-4bb0-a3b3-5cb18c67072e)
