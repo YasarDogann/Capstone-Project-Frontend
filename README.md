@@ -2,6 +2,8 @@
 
 Bu proje, React Router kullanarak tek sayfalık bir uygulama (SPA) geliştirilmesini amaçlayan bir kitap yönetim sistemi örneğidir. Kullanıcılar, kitaplarla ilgili CRUD işlemleri yapabilirler. Yayımcı, kategori, kitap, yazar ve kitap alma işlemleri üzerinde gerçekleştirebilecekleri işlemler mevcuttur.
 
+PROJE LİNKİ : https://capstone-project-frontend-b39p.vercel.app/
+
 ## Proje Özeti
 
 React Router kullanarak uygulama tek sayfa (SPA) şeklinde geliştirilmiştir. Her sayfada ilgili CRUD işlemleri yapılabilir. Ayrıca başarılı/başarısız operasyonlar sonucu kullanıcı bilgilendirilmektedir (window.alert kullanılmaz). Tasarım özgür olup, Responsive tasarım yapılmamıştır ve 1200px genişliğinde çalışması yeterlidir.
