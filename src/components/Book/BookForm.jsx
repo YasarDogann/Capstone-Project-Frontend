@@ -40,7 +40,8 @@ const BookForm = () => {
 
         // Eğer düzenleme modundaysa kitap verileri de çekilir
         if (isEditMode) {
-          const { data } = await api.get(`/books/${id}?_expand=author,publisher&_embed=categories`);
+          // const { data } = await api.get(`/books/${id}?_expand=author,publisher&_embed=categories`);
+          const {data}  = await api.get('books');
           setFormData({
             ...data,
             categories: data.categories || []
